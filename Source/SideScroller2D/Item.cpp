@@ -58,7 +58,7 @@ void AItem::PickupAnimation(AActor* OtherActor)
 
 	if (Character != nullptr)
 	{
-		BaseCollisionComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		BaseCollisionComponent->SetGenerateOverlapEvents(false);
 		SpriteComponent->SetFlipbook(ItemUseEffect);
 
 		GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AItem::DestroyActor, SpriteComponent->GetFlipbookLength(), false);
