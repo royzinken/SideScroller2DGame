@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "SideScroller2D",
+			"Path": "E:\\Unreal Projects\\SideScroller2D\\Source\\SideScroller2D.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "SideScroller2DEditor",
+			"Path": "E:\\Unreal Projects\\SideScroller2D\\Source\\SideScroller2DEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

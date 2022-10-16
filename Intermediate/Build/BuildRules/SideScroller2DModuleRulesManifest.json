@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"E:\\Unreal Projects\\SideScroller2D\\Source\\SideScroller2D\\SideScroller2D.Build.cs",
+		"E:\\Unreal Projects\\SideScroller2D\\Source\\SideScroller2D.Target.cs",
+		"E:\\Unreal Projects\\SideScroller2D\\Source\\SideScroller2DEditor.Target.cs"
+	],
+	"EngineVersion": "5.0.0"
+}

@@ -1,0 +1,79 @@
+/MANIFEST:EMBED
+/MANIFESTINPUT:E:\UE_5.0EA\Engine\Build\Windows\Resources\Default-Win64.manifest
+/NOLOGO
+/DEBUG
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/FIXED:No
+/NXCOMPAT
+/STACK:12000000
+/DELAY:UNLOAD
+/DLL
+/PDBALTPATH:%_PDB%
+/OPT:NOREF
+/OPT:NOICF
+/INCREMENTAL:NO
+/ignore:4199
+/ignore:4099
+/DELAYLOAD:"d3d12.dll"
+/DELAYLOAD:"DBGHELP.DLL"
+/LIBPATH:"E:\VS2022\VC\Tools\MSVC\14.30.30705\lib\x64"
+/LIBPATH:"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.2\lib\um\x64"
+/LIBPATH:"C:\Program Files (x86)\Windows Kits\10\lib\10.0.18362.0\ucrt\x64"
+/LIBPATH:"C:\Program Files (x86)\Windows Kits\10\lib\10.0.18362.0\um\x64"
+/NODEFAULTLIB:"LIBCMT"
+/NODEFAULTLIB:"LIBCPMT"
+/NODEFAULTLIB:"LIBCMTD"
+/NODEFAULTLIB:"LIBCPMTD"
+/NODEFAULTLIB:"MSVCRTD"
+/NODEFAULTLIB:"MSVCPRTD"
+/NODEFAULTLIB:"LIBC"
+/NODEFAULTLIB:"LIBCP"
+/NODEFAULTLIB:"LIBCD"
+/NODEFAULTLIB:"LIBCPD"
+/FUNCTIONPADMIN
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\SideScroller2DEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\Enemy.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\Item.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\SideScroller2D.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\SideScroller2DGameModeBase.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\Enemy.gen.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\Item.gen.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\SideScroller2D.init.gen.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\SideScroller2DGameModeBase.gen.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\Default.rc2.res"
+"E:\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Development\Engine\UnrealEditor-Engine.lib"
+"E:\UE_5.0EA\Engine\Plugins\2D\Paper2D\Intermediate\Build\Win64\UnrealEditor\Development\Paper2D\UnrealEditor-Paper2D.lib"
+"E:\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Development\Core\UnrealEditor-Core.lib"
+"E:\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Development\CoreUObject\UnrealEditor-CoreUObject.lib"
+"E:\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Development\InputCore\UnrealEditor-InputCore.lib"
+"delayimp.lib"
+"wininet.lib"
+"rpcrt4.lib"
+"ws2_32.lib"
+"dbghelp.lib"
+"comctl32.lib"
+"Winmm.lib"
+"kernel32.lib"
+"user32.lib"
+"gdi32.lib"
+"winspool.lib"
+"comdlg32.lib"
+"advapi32.lib"
+"shell32.lib"
+"ole32.lib"
+"oleaut32.lib"
+"uuid.lib"
+"odbc32.lib"
+"odbccp32.lib"
+"netapi32.lib"
+"iphlpapi.lib"
+"setupapi.lib"
+"dwmapi.lib"
+"imm32.lib"
+/OUT:"E:\Unreal Projects\SideScroller2D\Binaries\Win64\UnrealEditor-SideScroller2D-1876.dll"
+/IMPLIB:"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\UnrealEditor-SideScroller2D-1876.suppressed.lib"
+/PDB:"E:\Unreal Projects\SideScroller2D\Binaries\Win64\UnrealEditor-SideScroller2D-1876.pdb"
+/ignore:4078
+/INCLUDE:IMPLEMENT_MODULE_SideScroller2D

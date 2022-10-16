@@ -1,0 +1,2 @@
+E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\Definitions.SideScroller2D.h
+E:\Unreal Projects\SideScroller2D\Source\SideScroller2D\SideScroller2D.h

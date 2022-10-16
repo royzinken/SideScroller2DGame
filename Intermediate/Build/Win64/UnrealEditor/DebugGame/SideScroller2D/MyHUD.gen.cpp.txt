@@ -1,0 +1,10 @@
+E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\DebugGame\SideScroller2D\Definitions.SideScroller2D.h
+E:\UE_5.0EA\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+E:\UE_5.0EA\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
+E:\Unreal Projects\SideScroller2D\Source\SideScroller2D/MyHUD.h
+E:\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\GameFramework/HUD.h
+E:\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\GameFramework/HUDHitBox.h
+E:\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\GameFramework/DebugTextInfo.h
+E:\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\DebugTextInfo.generated.h
+E:\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\HUD.generated.h
+E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Inc\SideScroller2D\MyHUD.generated.h

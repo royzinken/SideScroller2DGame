@@ -1,0 +1,18 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-SideScroller2D.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\SideScroller2DEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\Item.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\SideScroller2D.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\SideScroller2DGameModeBase.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\Item.gen.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\SideScroller2D.init.gen.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\SideScroller2DGameModeBase.gen.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\Default.rc2.res"
+/OUT:"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\Development\SideScroller2D\UnrealEditor-SideScroller2D.lib"
+/INCLUDE:IMPLEMENT_MODULE_SideScroller2D

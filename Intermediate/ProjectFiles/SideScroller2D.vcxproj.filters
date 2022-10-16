@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\SideScroller2D.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{7BCABE6F-3443-47EB-8BCE-A68CFF37C451}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\SideScroller2D.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\SideScroller2DEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{E9CBE87B-B40B-44EA-A73E-FC7B550F8696}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\SideScroller2D">
+      <UniqueIdentifier>{CB4C77CF-36AD-44DB-A1A4-D5633A9CE62E}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\SideScroller2D\Enemy.cpp">
+      <Filter>Source\SideScroller2D</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SideScroller2D\Enemy.h">
+      <Filter>Source\SideScroller2D</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SideScroller2D\GemItem.cpp">
+      <Filter>Source\SideScroller2D</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SideScroller2D\GemItem.h">
+      <Filter>Source\SideScroller2D</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SideScroller2D\Item.cpp">
+      <Filter>Source\SideScroller2D</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SideScroller2D\Item.h">
+      <Filter>Source\SideScroller2D</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SideScroller2D\MyHUD.cpp">
+      <Filter>Source\SideScroller2D</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SideScroller2D\MyHUD.h">
+      <Filter>Source\SideScroller2D</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SideScroller2D\MyPaperCharacter.cpp">
+      <Filter>Source\SideScroller2D</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SideScroller2D\MyPaperCharacter.h">
+      <Filter>Source\SideScroller2D</Filter>
+    </ClInclude>
+    <None Include="..\..\Source\SideScroller2D\SideScroller2D.Build.cs">
+      <Filter>Source\SideScroller2D</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\SideScroller2D\SideScroller2D.cpp">
+      <Filter>Source\SideScroller2D</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SideScroller2D\SideScroller2D.h">
+      <Filter>Source\SideScroller2D</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SideScroller2D\SideScroller2DGameModeBase.cpp">
+      <Filter>Source\SideScroller2D</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SideScroller2D\SideScroller2DGameModeBase.h">
+      <Filter>Source\SideScroller2D</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

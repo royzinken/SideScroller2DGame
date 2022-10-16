@@ -1,0 +1,24 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-SideScroller2D-Win64-DebugGame.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\SideScroller2DEditor\DebugGame\Engine\SharedPCH.Engine.NonOptimized.ShadowErrors.h.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\DebugGame\SideScroller2D\Enemy.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\DebugGame\SideScroller2D\Item.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\DebugGame\SideScroller2D\MyHUD.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\DebugGame\SideScroller2D\MyPaperCharacter.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\DebugGame\SideScroller2D\SideScroller2D.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\DebugGame\SideScroller2D\SideScroller2DGameModeBase.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\DebugGame\SideScroller2D\Enemy.gen.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\DebugGame\SideScroller2D\Item.gen.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\DebugGame\SideScroller2D\MyHUD.gen.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\DebugGame\SideScroller2D\MyPaperCharacter.gen.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\DebugGame\SideScroller2D\SideScroller2D.init.gen.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\DebugGame\SideScroller2D\SideScroller2DGameModeBase.gen.cpp.obj"
+"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\DebugGame\SideScroller2D\Default.rc2.res"
+/OUT:"E:\Unreal Projects\SideScroller2D\Intermediate\Build\Win64\UnrealEditor\DebugGame\SideScroller2D\UnrealEditor-SideScroller2D-Win64-DebugGame.lib"
+/INCLUDE:IMPLEMENT_MODULE_SideScroller2D
