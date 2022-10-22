@@ -28,4 +28,13 @@ void ASideScroller2DGameModeBase::BeginPlay()
 			CurrentWidget->AddToViewport();
 		}
 	}
+
+	APlayerController* MyController = GetWorld()->GetFirstPlayerController();
+
+	if (MyController)
+	{
+		MyController->bShowMouseCursor = true;
+		MyController->bEnableClickEvents = true;
+		MyController->bEnableMouseOverEvents = true;
+	}
 }

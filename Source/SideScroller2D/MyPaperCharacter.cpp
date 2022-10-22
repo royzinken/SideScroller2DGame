@@ -7,7 +7,10 @@
 #include "PaperFlipbook.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "DrawDebugHelpers.h"
+#include "Projectiles/Projectile.h"
 #include "GemItem.h"
+#include <SideScroller2D/enemy/EnemyActor.h>
 
 AMyPaperCharacter::AMyPaperCharacter()
 {
@@ -16,7 +19,6 @@ AMyPaperCharacter::AMyPaperCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = true;
 	bUseControllerRotationRoll = false;
-
 	// Set the size of our collision capsule.
 	GetCapsuleComponent()->SetCapsuleRadius(8.0f);
 	GetCapsuleComponent()->SetCapsuleHalfHeight(13.5f);
@@ -66,8 +68,15 @@ AMyPaperCharacter::AMyPaperCharacter()
 	FallAnimation = ConstructorHelpers::FObjectFinder<UPaperFlipbook>
 		(TEXT("PaperFlipbook'/Game/maps/SunnylandAssets/sprites/player/jump/player-jump.player-jump'")).Object;
 
+
 }
 
+void AMyPaperCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	playerController = Cast<APlayerController>(GetWorld()->GetFirstPlayerController());
+}
 //////////////////////////////////////////////////////////////////////////
 // Animation
 
@@ -94,6 +103,18 @@ void AMyPaperCharacter::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 
 	UpdateCharacter();
+
+	FVector mouseLocation, mouseDirection;
+
+	FVector MyCharacterPosition = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
+
+	if (playerController)
+	{
+		playerController->DeprojectMousePositionToWorld(mouseLocation, mouseDirection);
+
+		DrawDebugLine(GetWorld(), MyCharacterPosition, mouseLocation, FColor::Red);
+		DrawDebugPoint(GetWorld(), mouseLocation,10.0f,FColor::Red);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -106,8 +127,39 @@ void AMyPaperCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AMyPaperCharacter::MoveRight);
 	PlayerInputComponent->BindAction("DropGem", IE_Released, this, &AMyPaperCharacter::DropGem);
+	PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &AMyPaperCharacter::SpawnProjectile);
 }
+void AMyPaperCharacter::SpawnProjectile()
+{
 
+
+	FVector mouseLocation, mouseDirection;
+
+	FVector MyCharacterPosition = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
+
+	if (playerController)
+	{
+		playerController->DeprojectMousePositionToWorld(mouseLocation, mouseDirection);
+
+		//DrawDebugLine(GetWorld(), MyCharacterPosition, mouseLocation, FColor::Red, true, 1.0f);
+
+		//UE_LOG(LogTemp, Warning, TEXT("Mouse location:%s"), *mouseLocation.ToString());
+	}
+
+
+	mouseLocation.Y = 0.0f;
+
+
+	FRotator MyCharacterRotation = Controller->GetControlRotation();
+
+	AProjectile* SpawnedActor1 = (AProjectile*)GetWorld()->SpawnActor(AProjectile::StaticClass(), &mouseLocation, &MyCharacterRotation);
+
+	//SpawnedActor1->SetActorLocation()
+
+	//UE_LOG(LogTemp, Warning, TEXT("MouseLocation :%s MouseDirection:%s"), *mouseLocation.ToString(), *mouseDirection.ToString());
+
+
+}
 void AMyPaperCharacter::DropGem()
 {
 
@@ -122,7 +174,6 @@ void AMyPaperCharacter::DropGem()
 
 		MyCharacterPosition.X = (MyCharacterRotation.Yaw == 180.0f) ? MyCharacterPosition.X - 50.0f : MyCharacterPosition.X + 50.0f;
 		AGemItem* SpawnedActor1 = (AGemItem*)GetWorld()->SpawnActor(AGemItem::StaticClass(), &MyCharacterPosition, &MyCharacterRotation);
-
 	}
 	UE_LOG(LogTemp, Warning, TEXT("DROPPED"));
 }

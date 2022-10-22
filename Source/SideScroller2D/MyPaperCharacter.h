@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "Core.h"
 #include "PaperCharacter.h"
 #include "MyPaperCharacter.generated.h"
 
@@ -36,6 +36,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Score")
 		void UpdateScore(int score) { m_Score = score; };
 
+	UFUNCTION()
+		void SpawnProjectile();
 protected:
 	// The animation to play while running around
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
@@ -47,6 +49,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
 		class UPaperFlipbook* FallAnimation;
+
+	UPROPERTY()
+		APlayerController* playerController;
 
 	/** Called to choose the correct animation to play based on the character's movement state */
 	void UpdateAnimation();
@@ -60,6 +65,6 @@ protected:
 
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
-
+	virtual void BeginPlay() override;
 
 };

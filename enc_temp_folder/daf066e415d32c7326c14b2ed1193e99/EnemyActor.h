@@ -51,7 +51,6 @@ public:
 
 	float GetHealth() { return Health;  }
 	float GetMaxHealth() { return DefaultHealth; }
-	bool IsAlive() { return State != EnemyState::eDead; }
 protected:
 	UFUNCTION()
 		void BeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);

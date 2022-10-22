@@ -69,7 +69,6 @@ void AEnemyActor::DestroyActor()
 {
 	Destroy();
 }
-
 void AEnemyActor::Died()
 {
 	FTimerHandle MemberTimerHandle;
@@ -154,9 +153,6 @@ void AEnemyActor::Tick(float DeltaSeconds)
 
 void AEnemyActor::BeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (!this->IsAlive())
-		return;
-
 	if (AMyPaperCharacter* otherActor = Cast<AMyPaperCharacter>(OtherActor))
 	{
 		PlayerREF = Cast<AMyPaperCharacter>(OtherActor);
@@ -168,9 +164,6 @@ void AEnemyActor::BeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor*
 
 void AEnemyActor::OverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	if (!this->IsAlive())
-		return;
-
 	if (AMyPaperCharacter* otherActor = Cast<AMyPaperCharacter>(OtherActor))
 	{
 		State = EnemyState::eIDL;
@@ -180,9 +173,6 @@ void AEnemyActor::OverlapEnd(class UPrimitiveComponent* OverlappedComp, class AA
 
 void AEnemyActor::BeginOverlapAttack(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (!this->IsAlive())
-		return;
-
 	if (AMyPaperCharacter* otherActor = Cast<AMyPaperCharacter>(OtherActor))
 	{
 		State = EnemyState::eAttacking;
@@ -194,10 +184,7 @@ void AEnemyActor::BeginOverlapAttack(UPrimitiveComponent* OverlappedComponent, A
 
 void AEnemyActor::OverlapEndAttack(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	if (!this->IsAlive())
-		return;
-
-	if (AMyPaperCharacter* otherActor = Cast<AMyPaperCharacter>(OtherActor) )
+	if (AMyPaperCharacter* otherActor = Cast<AMyPaperCharacter>(OtherActor))
 	{
 		State = EnemyState::ePlayerDetected;
 	}
