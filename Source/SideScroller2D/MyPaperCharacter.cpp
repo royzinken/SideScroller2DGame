@@ -79,7 +79,13 @@ void AMyPaperCharacter::BeginPlay()
 
 	playerController = GetWorld()->GetFirstPlayerController();
 }
-
+void AMyPaperCharacter::FireRatePW()
+{
+	if (PlayerState == EPlayerStates::shooting)
+	{
+		this->StartShooting();
+	}
+}
 void AMyPaperCharacter::SetPowerup(EItems::Powerup powerUp, float duration)
 {
 	//No stacking of powerups
@@ -91,7 +97,7 @@ void AMyPaperCharacter::SetPowerup(EItems::Powerup powerUp, float duration)
 
 
 	switch (m_Powerup){
-		case EItems::eFirerate: { m_FireRate = 0.05f; this->StartShooting() ;break; } 
+		case EItems::eFirerate: { m_FireRate = 0.05f; this->FireRatePW(); break; }
 	}
 
 
@@ -100,7 +106,7 @@ void AMyPaperCharacter::SetPowerup(EItems::Powerup powerUp, float duration)
 void AMyPaperCharacter::RemovePowerup()
 {
 	switch (m_Powerup) {
-	case EItems::eFirerate: { m_FireRate = m_DefaultFireRate; this->StartShooting(); } break;
+	case EItems::eFirerate: { m_FireRate = m_DefaultFireRate; this->FireRatePW(); } break;
 	}
 
 	m_Powerup = EItems::eNone;

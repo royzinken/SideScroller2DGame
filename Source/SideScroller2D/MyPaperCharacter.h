@@ -83,7 +83,10 @@ protected:
 
 	void StartShooting();
 	void StopShooting();
-	
+
+	//Powerups
+	void FireRatePW();
+
 	void RemovePowerup();
 
 	// APawn interface
