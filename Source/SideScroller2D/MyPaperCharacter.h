@@ -4,12 +4,12 @@
 
 #include "Core.h"
 #include "PaperCharacter.h"
+#include "GameEnums/Enums.h"
 #include "MyPaperCharacter.generated.h"
 
 /**
  * 
  */
-
 class UPaperFlipbook;
 
 UCLASS()
@@ -18,6 +18,18 @@ class SIDESCROLLER2D_API AMyPaperCharacter : public APaperCharacter
 	GENERATED_BODY()
 private:
 	int m_Score = 0;
+	float m_DefaultFireRate = 0.2f;
+	float m_FireRate;
+
+	float m_DefaultPowerupDuration = 5.0f;
+	float m_PowerupDuration;
+
+	FTimerHandle m_LastShotTime;
+
+	EItems::Powerup m_Powerup;
+
+	FTimerHandle TimeHandle;
+	FTimerHandle PowerupTimeHandle;
 public:
 	AMyPaperCharacter();
 
@@ -38,6 +50,12 @@ public:
 
 	UFUNCTION()
 		void SpawnProjectile();
+
+	EPlayerStates::State PlayerState;
+
+
+	void SetPowerup(EItems::Powerup powerUp, float duration);
+
 protected:
 	// The animation to play while running around
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
@@ -62,6 +80,11 @@ protected:
 	void MoveRight(float Value);
 
 	void DropGem();
+
+	void StartShooting();
+	void StopShooting();
+	
+	void RemovePowerup();
 
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;

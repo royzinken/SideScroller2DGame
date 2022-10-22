@@ -43,7 +43,7 @@ AEnemyActor::AEnemyActor()
 	GetSprite()->SetFlipbook(IdleAnimation);
 	GetSprite()->SetupAttachment(RootComponent);
 
-	State = EnemyState::eIDL;
+	State = EEnemyStates::eIDL;
 
 	speed = 60.0f;
 	Health = DefaultHealth;
@@ -74,8 +74,11 @@ void AEnemyActor::Died()
 {
 	FTimerHandle MemberTimerHandle;
 
-	GetSprite()->SetFlipbook(DeadAnimation);
 	CollisionBox->SetGenerateOverlapEvents(false);
+	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+
+	GetSprite()->SetFlipbook(DeadAnimation);
 	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AEnemyActor::DestroyActor, GetSprite()->GetFlipbookLength(), false);
 }
 void AEnemyActor::DoAttack()
@@ -91,7 +94,7 @@ float AEnemyActor::TakeDamage(float DamageAmount, FDamageEvent const& DamageEven
 
 	if (Health <= 0)
 	{
-		State = EnemyState::eDead;
+		State = EEnemyStates::eDead;
 		Died();
 	}
 
@@ -100,9 +103,9 @@ float AEnemyActor::TakeDamage(float DamageAmount, FDamageEvent const& DamageEven
 void AEnemyActor::UpdateAnimation()
 {
 	switch (State) {
-	case EnemyState::ePlayerDetected: { DesiredAnimation = RunningAnimation; }  break;
-	case EnemyState::eIDL: { DesiredAnimation = IdleAnimation; } break;
-	case EnemyState::eDead: { DesiredAnimation = DeadAnimation; } break;
+	case EEnemyStates::ePlayerDetected: { DesiredAnimation = RunningAnimation; }  break;
+	case EEnemyStates::eIDL: { DesiredAnimation = IdleAnimation; } break;
+	case EEnemyStates::eDead: { DesiredAnimation = DeadAnimation; } break;
 	default: { DesiredAnimation = IdleAnimation;  } break;
 	}
 
@@ -124,7 +127,7 @@ void AEnemyActor::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 	UpdateAnimation();
 
-	if (State == EnemyState::ePlayerDetected)
+	if (State == EEnemyStates::ePlayerDetected)
 	{
 
 		if (PlayerREF) {
@@ -162,7 +165,7 @@ void AEnemyActor::BeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor*
 		PlayerREF = Cast<AMyPaperCharacter>(OtherActor);
 
 		CurrentDistance = 0.0f;
-		State = EnemyState::ePlayerDetected;
+		State = EEnemyStates::ePlayerDetected;
 	}
 }
 
@@ -173,7 +176,7 @@ void AEnemyActor::OverlapEnd(class UPrimitiveComponent* OverlappedComp, class AA
 
 	if (AMyPaperCharacter* otherActor = Cast<AMyPaperCharacter>(OtherActor))
 	{
-		State = EnemyState::eIDL;
+		State = EEnemyStates::eIDL;
 		StartLocation = this->GetActorLocation();
 	}
 }
@@ -185,7 +188,7 @@ void AEnemyActor::BeginOverlapAttack(UPrimitiveComponent* OverlappedComponent, A
 
 	if (AMyPaperCharacter* otherActor = Cast<AMyPaperCharacter>(OtherActor))
 	{
-		State = EnemyState::eAttacking;
+		State = EEnemyStates::eAttacking;
 		StartLocation = this->GetActorLocation();
 
 		DoAttack();
@@ -199,7 +202,7 @@ void AEnemyActor::OverlapEndAttack(class UPrimitiveComponent* OverlappedComp, cl
 
 	if (AMyPaperCharacter* otherActor = Cast<AMyPaperCharacter>(OtherActor) )
 	{
-		State = EnemyState::ePlayerDetected;
+		State = EEnemyStates::ePlayerDetected;
 	}
 }
 

@@ -16,4 +16,6 @@ class SIDESCROLLER2D_API AGemItem : public AItem
 	
 public:
 	AGemItem();
+
+	virtual void AddPowerup(AActor* OtherActor) override;
 };

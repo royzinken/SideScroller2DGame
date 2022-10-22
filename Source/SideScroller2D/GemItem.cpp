@@ -2,6 +2,7 @@
 
 
 #include "GemItem.h"
+#include <SideScroller2D/MyPaperCharacter.h>
 
 AGemItem::AGemItem()
 {
@@ -14,4 +15,12 @@ AGemItem::AGemItem()
 	}
 
 	UE_LOG(LogTemp, Warning, TEXT("DROPPED GEM"));
+}
+
+void AGemItem::AddPowerup(AActor* OtherActor)
+{
+	if (AMyPaperCharacter* Player = Cast<AMyPaperCharacter>(OtherActor))
+	{
+		Player->SetPowerup(EItems::eFirerate,5.0f);
+	}
 }

@@ -11,15 +11,9 @@
 #include "../MyPaperCharacter.h"
 #include "Navigation/PathFollowingComponent.h"
 #include "Components/WidgetComponent.h"
+#include "../GameEnums/Enums.h"
 #include "EnemyActor.generated.h"
 
-enum EnemyState {
-	eNone,
-	eIDL,
-	eAttacking,
-	ePlayerDetected,
-	eDead
-};
 /**
  * 
  */
@@ -29,7 +23,7 @@ class SIDESCROLLER2D_API AEnemyActor : public APaperCharacter
 	GENERATED_BODY()
 
 protected:
-	EnemyState State;
+	EEnemyStates::State State;
 	FTimerHandle SeekPlayerTimerHandle;
 
 	FVector Direction;
@@ -51,7 +45,7 @@ public:
 
 	float GetHealth() { return Health;  }
 	float GetMaxHealth() { return DefaultHealth; }
-	bool IsAlive() { return State != EnemyState::eDead; }
+	bool IsAlive() { return State != EEnemyStates::eDead; }
 protected:
 	UFUNCTION()
 		void BeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);

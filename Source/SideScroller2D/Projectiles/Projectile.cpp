@@ -11,8 +11,8 @@ AProjectile::AProjectile()
 	PrimaryActorTick.bCanEverTick = false;
 	SphereRadius = 3.0f;
 	MaxSpeed = 500.0f;
-	InitialSpeed = 300.0f;
-	Damage = 20.0f;
+	InitialSpeed = 500.0f;
+	Damage = 25.0f;
 
 
 	SpriteComponent = CreateDefaultSubobject<UPaperFlipbookComponent>(TEXT("Sprite"));
@@ -57,6 +57,9 @@ void AProjectile::BeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor*
 {
 	if (AEnemyActor* Target = Cast<AEnemyActor>(OtherActor)) 
 	{
+		if (!Target->IsAlive())
+			return;
+
 		UCapsuleComponent* CapsComp = Cast<UCapsuleComponent>(OtherComp);
 
 		if (CapsComp)

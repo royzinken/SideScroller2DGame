@@ -69,5 +69,11 @@ void AItem::BeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Other
 {
 	this->AddScore(OtherActor);
 	this->PickupAnimation(OtherActor);
+	this->AddPowerup(OtherActor);
+
+}
+
+void AItem::AddPowerup(AActor* OtherActor)
+{
 
 }

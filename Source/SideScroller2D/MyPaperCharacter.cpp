@@ -15,6 +15,9 @@
 AMyPaperCharacter::AMyPaperCharacter()
 {
 
+	m_FireRate = m_DefaultFireRate;
+	m_Powerup = EItems::eNone;
+
 	// Use only Yaw from the controller and ignore the rest of the rotation.
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = true;
@@ -68,18 +71,44 @@ AMyPaperCharacter::AMyPaperCharacter()
 	FallAnimation = ConstructorHelpers::FObjectFinder<UPaperFlipbook>
 		(TEXT("PaperFlipbook'/Game/maps/SunnylandAssets/sprites/player/jump/player-jump.player-jump'")).Object;
 
-
 }
 
 void AMyPaperCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	playerController = Cast<APlayerController>(GetWorld()->GetFirstPlayerController());
+	playerController = GetWorld()->GetFirstPlayerController();
 }
+
+void AMyPaperCharacter::SetPowerup(EItems::Powerup powerUp, float duration)
+{
+	//No stacking of powerups
+	if (m_Powerup == powerUp)
+		return;
+
+	m_Powerup = powerUp;
+	m_PowerupDuration = duration;
+
+
+	switch (m_Powerup){
+		case EItems::eFirerate: { m_FireRate = 0.05f; this->StartShooting() ;break; } 
+	}
+
+
+	GetWorldTimerManager().SetTimer(PowerupTimeHandle, this, &AMyPaperCharacter::RemovePowerup, m_PowerupDuration, false);
+}
+void AMyPaperCharacter::RemovePowerup()
+{
+	switch (m_Powerup) {
+	case EItems::eFirerate: { m_FireRate = m_DefaultFireRate; this->StartShooting(); } break;
+	}
+
+	m_Powerup = EItems::eNone;
+	m_PowerupDuration = m_DefaultPowerupDuration;
+}
+
 //////////////////////////////////////////////////////////////////////////
 // Animation
-
 void AMyPaperCharacter::UpdateAnimation()
 {
 	const FVector PlayerVelocity = GetVelocity();
@@ -110,10 +139,12 @@ void AMyPaperCharacter::Tick(float DeltaSeconds)
 
 	if (playerController)
 	{
-		playerController->DeprojectMousePositionToWorld(mouseLocation, mouseDirection);
+		FHitResult Hitted;
 
-		DrawDebugLine(GetWorld(), MyCharacterPosition, mouseLocation, FColor::Red);
-		DrawDebugPoint(GetWorld(), mouseLocation,10.0f,FColor::Red);
+		playerController->GetHitResultUnderCursor(ECollisionChannel::ECC_WorldStatic, true, Hitted);
+
+		DrawDebugLine(GetWorld(), MyCharacterPosition, Hitted.Location, FColor::Red);
+		DrawDebugPoint(GetWorld(), Hitted.Location,10.0f,FColor::Red);
 	}
 }
 
@@ -127,38 +158,49 @@ void AMyPaperCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AMyPaperCharacter::MoveRight);
 	PlayerInputComponent->BindAction("DropGem", IE_Released, this, &AMyPaperCharacter::DropGem);
-	PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &AMyPaperCharacter::SpawnProjectile);
+	PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &AMyPaperCharacter::StartShooting);
+	PlayerInputComponent->BindAction("Shoot", IE_Released, this, &AMyPaperCharacter::StopShooting);
+}
+void AMyPaperCharacter::StartShooting()
+{
+	if (PlayerState != EPlayerStates::shooting || m_Powerup == EItems::eFirerate)
+	{
+	
+		GetWorldTimerManager().SetTimer(TimeHandle, this, &AMyPaperCharacter::SpawnProjectile, m_FireRate, true);
+		PlayerState = EPlayerStates::shooting;
+	}
+}
+void AMyPaperCharacter::StopShooting()
+{
+	if (PlayerState == EPlayerStates::shooting)
+	{
+		GetWorldTimerManager().ClearTimer(TimeHandle);
+		PlayerState = EPlayerStates::idl;
+	}
 }
 void AMyPaperCharacter::SpawnProjectile()
 {
 
-
-	FVector mouseLocation, mouseDirection;
-
-	FVector MyCharacterPosition = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
-
 	if (playerController)
 	{
-		playerController->DeprojectMousePositionToWorld(mouseLocation, mouseDirection);
+		FHitResult HitLocation;
+		FRotator Rotation;
 
-		//DrawDebugLine(GetWorld(), MyCharacterPosition, mouseLocation, FColor::Red, true, 1.0f);
+		playerController->GetHitResultUnderCursor(ECollisionChannel::ECC_WorldStatic, true, HitLocation);
 
-		//UE_LOG(LogTemp, Warning, TEXT("Mouse location:%s"), *mouseLocation.ToString());
+		HitLocation.Location.Y = 0.0f;
+
+		FVector MyCharacterPosition = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
+
+		FVector Pointer = (HitLocation.Location - MyCharacterPosition);
+
+		Pointer.Normalize();
+
+		Rotation = Pointer.Rotation();
+
+
+		AProjectile* SpawnedActor1 = (AProjectile*)GetWorld()->SpawnActor(AProjectile::StaticClass(), &MyCharacterPosition, &Rotation);
 	}
-
-
-	mouseLocation.Y = 0.0f;
-
-
-	FRotator MyCharacterRotation = Controller->GetControlRotation();
-
-	AProjectile* SpawnedActor1 = (AProjectile*)GetWorld()->SpawnActor(AProjectile::StaticClass(), &mouseLocation, &MyCharacterRotation);
-
-	//SpawnedActor1->SetActorLocation()
-
-	//UE_LOG(LogTemp, Warning, TEXT("MouseLocation :%s MouseDirection:%s"), *mouseLocation.ToString(), *mouseDirection.ToString());
-
-
 }
 void AMyPaperCharacter::DropGem()
 {
