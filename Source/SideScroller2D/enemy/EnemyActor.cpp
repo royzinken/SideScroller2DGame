@@ -23,12 +23,14 @@ AEnemyActor::AEnemyActor()
 	CollisionBox->SetBoxExtent(FVector(100.0f, 8.0f, 40.0f));
 	CollisionBox->SetGenerateOverlapEvents(true);
 	CollisionBox->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	CollisionBox->SetCollisionResponseToChannel(ECollisionChannel::ECC_WorldDynamic, ECollisionResponse::ECR_Ignore);
 	CollisionBox->SetupAttachment(RootComponent);
 
 	AttackBox = CreateDefaultSubobject<UBoxComponent>(TEXT("AttackBox"));
 	AttackBox->SetBoxExtent(FVector(20.0f, 8.0f, 40.0f));
 	AttackBox->SetGenerateOverlapEvents(true);
 	AttackBox->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	AttackBox->SetCollisionResponseToChannel(ECollisionChannel::ECC_WorldDynamic, ECollisionResponse::ECR_Ignore);
 	AttackBox->SetupAttachment(RootComponent);
 
 	IdleAnimation = ConstructorHelpers::FObjectFinder<UPaperFlipbook>

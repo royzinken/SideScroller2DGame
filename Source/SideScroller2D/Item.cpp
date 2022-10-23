@@ -10,6 +10,8 @@ AItem::AItem()
 	PrimaryActorTick.bCanEverTick = false;
 
 	BaseCollisionComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BaseCapsuleComponent"));
+	BaseCollisionComponent->SetCollisionResponseToChannel(ECollisionChannel::ECC_WorldDynamic, ECollisionResponse::ECR_Ignore);
+
 	SpriteComponent = CreateDefaultSubobject<UPaperFlipbookComponent>(TEXT("Sprite"));
 
 	RootComponent = BaseCollisionComponent;

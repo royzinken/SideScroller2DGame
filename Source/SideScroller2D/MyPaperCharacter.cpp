@@ -235,20 +235,29 @@ void AMyPaperCharacter::MoveRight(float Value)
 
 void AMyPaperCharacter::UpdateCharacter()
 {
+	FHitResult HitLocation;
+
 	// Update animation to match the motion
 	UpdateAnimation();
 
 	// Now setup the rotation of the controller based on the direction we are travelling
 	const FVector PlayerVelocity = GetVelocity();
 	float TravelDirection = PlayerVelocity.X;
+
 	// Set the rotation so that the character faces his direction of travel.
 	if (Controller != nullptr)
 	{
-		if (TravelDirection < 0.0f)
+		playerController->GetHitResultUnderCursor(ECollisionChannel::ECC_WorldStatic, true, HitLocation);
+		FVector MyCharacterPosition = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
+		FVector Pointer = (HitLocation.Location - MyCharacterPosition);
+
+		Pointer.Normalize();
+
+		if (Pointer.X < 0.0f)
 		{
 			Controller->SetControlRotation(FRotator(0.0, 180.0f, 0.0f));
 		}
-		else if (TravelDirection > 0.0f)
+		else if (Pointer.X > 0.0f)
 		{
 			Controller->SetControlRotation(FRotator(0.0f, 0.0f, 0.0f));
 		}

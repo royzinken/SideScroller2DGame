@@ -13,6 +13,7 @@ AProjectile::AProjectile()
 	MaxSpeed = 500.0f;
 	InitialSpeed = 500.0f;
 	Damage = 25.0f;
+	InitialLifeSpan = 3.0f;
 
 
 	SpriteComponent = CreateDefaultSubobject<UPaperFlipbookComponent>(TEXT("Sprite"));
@@ -21,6 +22,8 @@ AProjectile::AProjectile()
 	SphereComponent->SetSphereRadius(SphereRadius);
 	SphereComponent->SetupAttachment(RootComponent);
 	SphereComponent->SetGenerateOverlapEvents(true);
+	SphereComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	SphereComponent->SetCollisionResponseToChannel(ECollisionChannel::ECC_Visibility, ECollisionResponse::ECR_Block);
 
 	MovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("MovementComponent"));
 	MovementComponent->ProjectileGravityScale = 0.0f;
@@ -28,7 +31,7 @@ AProjectile::AProjectile()
 	MovementComponent->MaxSpeed = MaxSpeed;
 
 	ProjectileAnimation = ConstructorHelpers::FObjectFinder<UPaperFlipbook>
-		(TEXT("PaperFlipbook'/Game/Sprites/Fireball/FB.FB'")).Object;
+		(TEXT("PaperFlipbook'/Game/Sprites/Fireball/pixil-frame.pixil-frame'")).Object;
 
 	SpriteComponent->SetupAttachment(SphereComponent);
 }
@@ -44,29 +47,21 @@ void AProjectile::BeginPlay()
 	
 }
 
-// Called every frame
-void AProjectile::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-
-
-}
-
 void AProjectile::BeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	if (Cast<AMyPaperCharacter>(OtherActor))
+		return;
+
+
 	if (AEnemyActor* Target = Cast<AEnemyActor>(OtherActor)) 
 	{
 		if (!Target->IsAlive())
 			return;
 
-		UCapsuleComponent* CapsComp = Cast<UCapsuleComponent>(OtherComp);
-
-		if (CapsComp)
-		{
-			Target->TakeDamage(Damage, FDamageEvent(), GetInstigatorController(), this);
-			Destroy();
-		}
+		Target->TakeDamage(Damage, FDamageEvent(), GetInstigatorController(), this);
 	}
 
+	Destroy();
+
+	UE_LOG(LogTemp, Warning, TEXT("%s"), *OtherComp->GetName());
 }
